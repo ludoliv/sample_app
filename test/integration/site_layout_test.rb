@@ -8,5 +8,7 @@ class SiteLayoutTest < ActionDispatch::IntegrationTest
     assert_select "a[href=?]", help_path # On recherche si un lien vers help existe
     assert_select "a[href=?]", about_path
     assert_select "a[href=?]", contact_path
+    get contact_path
+    assert_select "title", full_title("Contact")
   end
 end
