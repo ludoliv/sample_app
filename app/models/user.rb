@@ -8,6 +8,7 @@ class User < ApplicationRecord
     validates :email, presence: true, length: {maximum: 255},format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     has_secure_password
     validates :password, presence: true ,length: { minimum: 6 }, allow_nil: true
+    has_many :active_relationships, class_name:"Relationship",foreign_key: "follower_id",dependent: :destroy
 
     # Returns the hash digest of the given string.
     class << self
